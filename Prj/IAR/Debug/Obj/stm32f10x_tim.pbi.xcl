@@ -15,6 +15,10 @@ E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\..\..\Source\HDL
 -I
 E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\..\..\Source\HAL\stm32f10x\inc
 -I
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.2\arm\CMSIS\Core\Include
+-I
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.2\arm\CMSIS\DSP\Include
+-I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.2\arm\inc
 -I
 D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.2\arm\inc\c
@@ -28,6 +32,10 @@ E:\Work\CodeGit\STM32F103RCT6\Source\HAL\Hal
 E:\Work\CodeGit\STM32F103RCT6\Source\HDL
 -I
 E:\Work\CodeGit\STM32F103RCT6\Source\HAL\stm32f10x\inc
+-I
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.2\arm\CMSIS\Core\Include
+-I
+D:\Program Files (x86)\IAR Systems\Embedded Workbench 8.2\arm\CMSIS\DSP\Include
 -D__CHAR_BITS__=8
 -D__CHAR_MAX__=0xff
 -D__CHAR_MIN__=0
@@ -303,6 +311,7 @@ E:\Work\CodeGit\STM32F103RCT6\Source\HAL\stm32f10x\inc
 -D__EDG_FLOAT80_ENABLING_POSSIBLE=0
 -D__EDG_FLOAT128_ENABLING_POSSIBLE=0
 -DSTM32F10X_HD=1
+-DUSE_STDPERIPH_DRIVER=1
 -D_DLIB_CONFIG_FILE_HEADER_NAME="D:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 8.2\\arm\\inc\\c\\DLib_Config_Normal.h"
 -D_DLIB_CONFIG_FILE_STRING="D:\\Program Files (x86)\\IAR Systems\\Embedded Workbench 8.2\\arm\\inc\\c\\DLib_Config_Normal.h"
 -D__VERSION__="IAR ANSI C/C++ Compiler V8.32.1.169/W32 for ARM"

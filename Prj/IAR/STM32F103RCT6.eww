@@ -3,5 +3,13 @@
     <project>
         <path>$WS_DIR$\STM32F103RCT6.ewp</path>
     </project>
-    <batchBuild />
+    <batchBuild>
+        <batchDefinition>
+            <name>build_all</name>
+            <member>
+                <project>STM32F103RCT6</project>
+                <configuration>Debug</configuration>
+            </member>
+        </batchDefinition>
+    </batchBuild>
 </workspace>

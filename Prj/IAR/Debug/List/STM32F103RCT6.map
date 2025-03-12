@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.32.1.169/W32 for ARM                  12/Mar/2025  22:26:21
+# IAR ELF Linker V8.32.1.169/W32 for ARM                  12/Mar/2025  22:57:15
 # Copyright 2007-2018 IAR Systems AB.
 #
 #    Output file  =  
@@ -8,9 +8,8 @@
 #    Map file     =  
 #        E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\Debug\List\STM32F103RCT6.map
 #    Command line =  
-#        -f C:\Users\ADMINI~1\AppData\Local\Temp\EWF050.tmp
-#        (E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\Debug\Obj\core_cm3.o
-#        E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\Debug\Obj\main.o
+#        -f C:\Users\ADMINI~1\AppData\Local\Temp\EW363F.tmp
+#        (E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\Debug\Obj\main.o
 #        E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\Debug\Obj\misc.o
 #        E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\Debug\Obj\startup_stm32f10x_hd.o
 #        E:\Work\CodeGit\STM32F103RCT6\Prj\IAR\Debug\Obj\stm32f10x_adc.o

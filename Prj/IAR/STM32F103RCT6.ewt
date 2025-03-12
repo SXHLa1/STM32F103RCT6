@@ -2380,9 +2380,6 @@
         <group>
             <name>Core</name>
             <file>
-                <name>$PROJ_DIR$\..\..\Source\HAL\Core\core_cm3.c</name>
-            </file>
-            <file>
                 <name>$PROJ_DIR$\..\..\Source\HAL\Core\startup_stm32f10x_hd.s</name>
             </file>
             <file>
