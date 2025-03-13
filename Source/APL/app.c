@@ -1,5 +1,5 @@
 /************************* (C) COPYRIGHT dehongyi @2034 *************************
- * File          : main.c
+ * File          : app.c
  * Summary       : 
  * Platform      : 
  * Author        : dehongyi
@@ -10,16 +10,24 @@
  
 /***********************************include************************************/
 #include "app.h"
+#include "drv_led.h"
 /***********************************define*************************************/
  
 /**********************************Function************************************/
-int main(void)
+void app_init(void)
 {
-    
-    
-    app_run();
-    
+    led_init();
     
 }
 
+void app_run(void)
+{
+    while(1)
+    {
+        ;
+    }
+
+}
+ 
 /******************* (C) COPYRIGHT 2034 dehongyi ******END OF FILE*************/
+ 

@@ -1,5 +1,5 @@
 /************************* (C) COPYRIGHT dehongyi @2034 *************************
- * File          : main.c
+ * File          : app.h
  * Summary       : 
  * Platform      : 
  * Author        : dehongyi
@@ -7,19 +7,24 @@
  * Date            Version         Author          Notes
  * 2025/3/13      v1.0            dehongyi            first version
  ******************************************************************************/
+#ifndef __APP_H
+#define __APP_H
+#ifdef __cplusplus
+ extern "C" {
+#endif
  
 /***********************************include************************************/
-#include "app.h"
-/***********************************define*************************************/
  
+/***********************************define*************************************/
+  
+/***********************************Struct*************************************/
+    
 /**********************************Function************************************/
-int main(void)
-{
-    
-    
-    app_run();
-    
-    
+void app_init(void);
+void app_run(void); 
+ 
+#ifdef __cplusplus
 }
-
+#endif
+#endif
 /******************* (C) COPYRIGHT 2034 dehongyi ******END OF FILE*************/

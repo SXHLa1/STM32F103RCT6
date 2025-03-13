@@ -2079,6 +2079,9 @@
     <group>
         <name>APL</name>
         <file>
+            <name>$PROJ_DIR$\..\..\Source\APL\app.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\Source\APL\main.c</name>
         </file>
     </group>
@@ -2098,6 +2101,27 @@
         </group>
         <group>
             <name>Hal</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_adc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_gpio.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_i2c.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_iwdg.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_rtc.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_spi.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_uart.c</name>
+            </file>
         </group>
         <group>
             <name>stm32f10x</name>
@@ -2171,5 +2195,8 @@
     </group>
     <group>
         <name>HDL</name>
+        <file>
+            <name>$PROJ_DIR$\..\..\Source\HDL\drv_led.c</name>
+        </file>
     </group>
 </project>
