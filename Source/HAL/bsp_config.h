@@ -14,7 +14,7 @@
 #endif
  
 /***********************************include************************************/
- 
+#include "stm32f10x.h"
 /***********************************define*************************************/
 
 /**********************************GPIO define*********************************/
@@ -23,9 +23,9 @@
 #define LED_READ_PIN                            GPIO_Pin_8
 #define LED_READ                                GPIOA,GPIO_Pin_8
 
-#define LED_GRREN_PORT                          GPIOD
-#define LED_GRREN_PIN                           GPIO_Pin_2
-#define LED_GRREN                               GPIOD,GPIO_Pin_2
+#define LED_GREEN_PORT                          GPIOD
+#define LED_GREEN_PIN                           GPIO_Pin_2
+#define LED_GREEN                               GPIOD,GPIO_Pin_2
 
 /**********************************UART define*********************************/
 

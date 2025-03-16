@@ -24,7 +24,7 @@ void app_run(void)
 {
     while(1)
     {
-        ;
+        LED_Control(0xff);
     }
 
 }

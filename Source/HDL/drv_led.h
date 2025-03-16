@@ -21,17 +21,19 @@
 #include "typedef.h"
 #include "bsp_config.h"
 /***********************************define*************************************/
-  
+
 /***********************************Struct*************************************/
-typedef enum
-{
-    READ  = 0x00,
-    GRREN = 0x01
-}LED_TypeDef;
+typedef struct {
+    char* name;
+    GPIO_TypeDef* GPIOx;
+    uint16_t pin;
+} LED_TypeDef;
+
 
 /**********************************Function************************************/
 void led_init(void);
-bool led_ctrl(bool ledctrl, LED_TypeDef lednum);
+void LED_Control(uint8_t mask);
+
  
 #ifdef __cplusplus
 }
