@@ -351,6 +351,7 @@
                     <state>$PROJ_DIR$\..\..\Source\HAL\Hal</state>
                     <state>$PROJ_DIR$\..\..\Source\HDL</state>
                     <state>$PROJ_DIR$\..\..\Source\HAL\stm32f10x\inc</state>
+                    <state>$PROJ_DIR$\..\..\Source\HAL</state>
                 </option>
                 <option>
                     <name>CCStdIncCheck</name>
@@ -2172,6 +2173,9 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\Source\HAL\stm32f10x\src\stm32f10x_pwr.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\stm32f10x\src\stm32f10x_rcc.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\Source\HAL\stm32f10x\src\stm32f10x_rtc.c</name>

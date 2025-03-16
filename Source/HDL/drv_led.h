@@ -17,20 +17,21 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "stm32f10x.h"
+#include "stm32f10x_rcc.h"
 #include "typedef.h"
+#include "bsp_config.h"
 /***********************************define*************************************/
   
 /***********************************Struct*************************************/
 typedef enum
 {
-    READ = 0x00,
-    BLUE = 0x01
-    
+    READ  = 0x00,
+    GRREN = 0x01
 }LED_TypeDef;
 
 /**********************************Function************************************/
 void led_init(void);
-bool led_ctrl(bool ledctrl, uint8_t lednum);
+bool led_ctrl(bool ledctrl, LED_TypeDef lednum);
  
 #ifdef __cplusplus
 }

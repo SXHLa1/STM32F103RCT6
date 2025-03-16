@@ -2467,6 +2467,9 @@
                 <name>$PROJ_DIR$\..\..\Source\HAL\stm32f10x\src\stm32f10x_pwr.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\stm32f10x\src\stm32f10x_rcc.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\..\Source\HAL\stm32f10x\src\stm32f10x_rtc.c</name>
             </file>
             <file>

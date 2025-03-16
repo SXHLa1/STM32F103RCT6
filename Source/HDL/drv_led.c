@@ -10,7 +10,7 @@
  
 /***********************************include************************************/
 #include "drv_led.h"
- 
+
 /***********************************define*************************************/
  
 /**********************************Function************************************/
@@ -31,12 +31,12 @@ void led_init(void)
     
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-    GPIO_SetBits(GPIOA,GPIO_Pin_8);
+    GPIO_Init(LED_READ_PORT, &GPIO_InitStructure);
+    GPIO_SetBits(LED_READ_PORT,LED_READ_PIN);
 
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
-    GPIO_Init(GPIOD, &GPIO_InitStructure);
-    GPIO_SetBits(GPIOD,GPIO_Pin_2);
+    GPIO_InitStructure.GPIO_Pin = LED_GRREN_PIN;
+    GPIO_Init(LED_GRREN_PORT, &GPIO_InitStructure);
+    GPIO_SetBits(LED_GRREN_PORT,LED_GRREN_PIN);
 }
 
 
@@ -48,7 +48,7 @@ void led_init(void)
 * @description  : 
 * @Author       : dehongyi
 *******************************************************************************/
-bool led_ctrl( bool ledctrl, uint8_t ledtype )
+bool led_ctrl( bool ledctrl, LED_TypeDef ledtype )
 {
     
     if( ledctrl != false )
@@ -57,7 +57,7 @@ bool led_ctrl( bool ledctrl, uint8_t ledtype )
     }
     else
     {
-    
+        
     }
     
     return true;
