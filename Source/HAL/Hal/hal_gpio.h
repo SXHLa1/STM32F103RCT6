@@ -14,15 +14,19 @@
 #endif
  
 /***********************************include************************************/
- 
+#include <stdint.h>
+#include <stdio.h>
+#include "stm32f10x.h"
 /***********************************define*************************************/
   
 /***********************************Struct*************************************/
     
 /**********************************Function************************************/
- 
- 
- 
+void hal_gpio_init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, uint8_t output);
+
+
+
+
 #ifdef __cplusplus
 }
 #endif

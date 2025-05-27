@@ -11,20 +11,33 @@
 /***********************************include************************************/
 #include "app.h"
 #include "drv_led.h"
+#include "hal_iwdg.h"
+#include "delay.h"
+#include "taskschedule.h"
+#include "hal_rcc.h"
+#include "hal_rtc.h"
+#include "hal_gpio.h"
 /***********************************define*************************************/
  
 /**********************************Function************************************/
 void app_init(void)
 {
-    led_init();
-    
+    SystemClock_Config();
+    hal_rtc_init();
+    delay_init();
+    LED_Init();
+    hal_iwdg_init();
+    LED_Flashing(200,200);
+    LED_OFF();
+    hal_gpio_init(GPIOA, GPIO_Pin_15, GPIO_Mode_Out_PP, GPIO_Speed_50MHz,0x01);
 }
 
 void app_run(void)
 {
     while(1)
     {
-        LED_Control(0xff);
+        hal_iwadg_clr();
+        task_process();
     }
 
 }

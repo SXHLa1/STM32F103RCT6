@@ -15,22 +15,9 @@
  
 /***********************************include************************************/
 #include <stdint.h>
+#include <stdbool.h>
 /***********************************define*************************************/
-typedef char int8;
 
-
-
-typedef unsigned char uint8;
-typedef unsigned int uint16;
-
-
-#define TRUE 0x01
-#define FALSE 0x00
-
-#define true 0x01
-#define false 0x00
-
-typedef unsigned char bool;
 
 
 /***********************************Struct*************************************/

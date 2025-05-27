@@ -2377,6 +2377,9 @@
         <file>
             <name>$PROJ_DIR$\..\..\Source\APL\main.c</name>
         </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\Source\APL\taskschedule.c</name>
+        </file>
     </group>
     <group>
         <name>HAL</name>
@@ -2405,6 +2408,12 @@
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_iwdg.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_key.c</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_rcc.c</name>
             </file>
             <file>
                 <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_rtc.c</name>
@@ -2491,6 +2500,12 @@
     </group>
     <group>
         <name>HDL</name>
+        <file>
+            <name>$PROJ_DIR$\..\..\Source\HDL\delay.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\Source\HDL\drv_key.c</name>
+        </file>
         <file>
             <name>$PROJ_DIR$\..\..\Source\HDL\drv_led.c</name>
         </file>

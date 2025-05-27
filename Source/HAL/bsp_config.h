@@ -19,9 +19,9 @@
 
 /**********************************GPIO define*********************************/
 /**********************************LED define**********************************/
-#define LED_READ_PORT                           GPIOA
-#define LED_READ_PIN                            GPIO_Pin_8
-#define LED_READ                                GPIOA,GPIO_Pin_8
+#define LED_RED_PORT                            GPIOA
+#define LED_RED_PIN                             GPIO_Pin_8
+#define LED_RED                                 GPIOA,GPIO_Pin_8
 
 #define LED_GREEN_PORT                          GPIOD
 #define LED_GREEN_PIN                           GPIO_Pin_2
