@@ -21,11 +21,11 @@
 #include "typedef.h"
 #include "bsp_config.h"
 /***********************************define*************************************/
-#define LED_RED_OFF                     0xFE        //关闭红色LED灯
-#define LED_RED_ON                      0x01        //打开红色LED灯
+#define LED_RED_OFF                     GPIO_ResetBits(LED_RED)        //关闭红色LED灯
+#define LED_RED_ON                      GPIO_SetBits(LED_RED)          //打开红色LED灯
 
-#define LED_GREEN_OFF                   0xFD        //关闭绿色LED灯
-#define LED_GREEN_ON                    0x02        //打开绿色LED灯
+#define LED_GREEN_OFF                   GPIO_ResetBits(LED_GREEN)      //关闭绿色LED灯
+#define LED_GREEN_ON                    GPIO_SetBits(LED_GREEN)        //打开绿色LED灯
 
 #define LED_RED_ON_GREEN_OFF            0x01        //关闭绿色LED灯，打开红色LED灯
 #define LED_RED_OFF_GREEN_ON            0x02        //关闭红色LED灯，打开绿色LED灯
@@ -38,14 +38,13 @@ typedef struct {
     char* name;
     GPIO_TypeDef* GPIOx;
     uint16_t pin;
+    uint8_t state;  //led 状态0x00：关，0x01：开
 } LED_TypeDef;
 
 
 /**********************************Function************************************/
 void LED_Init(void);                    //led 初始化函数
 void LED_Control(uint8_t mask);         //led 开/关控制函数
-void LED_OFF();     // 关闭所有LED灯
-void LED_ON();      // 打开所有LED灯
 void LED_Flashing(uint32_t delay_ms,uint32_t delay_ms1);  //led 闪烁函数
 
  

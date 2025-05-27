@@ -28,7 +28,6 @@ void app_init(void)
     LED_Init();
     hal_iwdg_init();
     LED_Flashing(200,200);
-    LED_OFF();
     hal_gpio_init(GPIOA, GPIO_Pin_15, GPIO_Mode_Out_PP, GPIO_Speed_50MHz,0x01);
 }
 

@@ -26,12 +26,11 @@ void task_sec()
 
     if (GPIO_ReadOutputDataBit(LED_RED) == Bit_RESET)
     {
-        
-        LED_Control(0x00);
+        LED_RED_ON;
     }
     else
     {
-        LED_Control(LED_RED_ON);
+        LED_RED_OFF;
     }
 }
 
@@ -93,16 +92,16 @@ void task_process()
         
         return;
     }
-    
+    //秒任务处理
     if(task_flag_get(TASK_RTC_SECOND_FLAG))
     {
         task_flag_clr(TASK_RTC_SECOND_FLAG);
         task_sec();
     }
+    
     if(task_flag_get(TASK_LED_FLAG))
     {
         task_flag_clr(TASK_LED_FLAG);
-        led_task();
     }
 }
 

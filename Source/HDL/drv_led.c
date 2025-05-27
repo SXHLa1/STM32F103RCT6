@@ -14,12 +14,14 @@
 #include "delay.h"
 
 /***********************************define*************************************/
-const LED_TypeDef LEDS[2] = {
-    {"LED_RED" ,  .GPIOx = LED_RED_PORT ,   .pin = LED_RED_PIN  },
-    {"LED_GREEN", .GPIOx = LED_GREEN_PORT , .pin = LED_GREEN_PIN },
+
+
+LED_TypeDef LEDS[2] = {
+    {"LED_RED" ,  .GPIOx = LED_RED_PORT ,   .pin = LED_RED_PIN,   .state = 0x00},
+    {"LED_GREEN", .GPIOx = LED_GREEN_PORT , .pin = LED_GREEN_PIN, .state = 0x00},
 };
 
-
+#define LED_NUMS    (sizeof(LEDS)/sizeof(LEDS[0]))
 /**********************************Function************************************/
 
 
@@ -48,54 +50,24 @@ void LED_Init(void)
 * @Author       : dehongyi
 *******************************************************************************/
 void LED_Control(uint8_t mask)
-{
-    for (int i = 0; i < sizeof(LEDS)/sizeof(LEDS[0]); ++i)
+{ 
+    //操作LED
+    for(int i = 0; i < LED_NUMS; ++i)
     {
         if ((mask >> i) & 1)
         {
             // 打开LED灯，需要注意打开电平
             GPIO_ResetBits(LEDS[i].GPIOx, LEDS[i].pin);
+            LEDS[i].state = 0x01;
         }
         else
         {
             // 关闭LED灯，需要注意关闭电平
             GPIO_SetBits(LEDS[i].GPIOx, LEDS[i].pin);
+            LEDS[i].state = 0x00;
         }
     }
 }
-
-/*******************************************************************************
-* @function     : LED_OFF()
-* @param        : 
-* @return       : 
-* @description  : 关闭所有LED
-* @Author       : dehongyi
-*******************************************************************************/
-void LED_OFF()
-{
-    for (int i = 0; i < sizeof(LEDS)/sizeof(LEDS[0]); ++i)
-    {
-        // 关闭LED灯，需要注意关闭电平
-        GPIO_SetBits(LEDS[i].GPIOx, LEDS[i].pin);
-    }
-}
-
-/*******************************************************************************
-* @function     : LED_ON()
-* @param        : 
-* @return       : 
-* @description  : 关闭所有LED
-* @Author       : dehongyi
-*******************************************************************************/
-void LED_ON()
-{
-    for (int i = 0; i < sizeof(LEDS)/sizeof(LEDS[0]); ++i)
-    {
-        // 打开LED灯，需要注意打开电平
-        GPIO_ResetBits(LEDS[i].GPIOx, LEDS[i].pin);
-    }
-}
-
 
 /*******************************************************************************
 * @function     : LED_Flashing()
