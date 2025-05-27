@@ -17,12 +17,40 @@
 
 /***********************************define*************************************/
 
+#define SOFT_TIME_SEC              59u
+#define SOFT_TIME_MIN              59u
+#define SOFT_TIME_HOUR             23u
+#define SOFT_TIME_DAY              30u
+#define SOFT_TIME_MONTH            12u
+#define SOFT_TIME_YEAR             99u
+
+
+
 
 typedef struct{
+    uint16_t cs;
     uint8_t sec;
     uint8_t min;
     uint8_t hour;
-}time;
+    uint8_t day;
+    uint8_t month;
+    uint8_t year;
+}tsoft_time_t;
+
+tsoft_time_t soft_time;
+
+tsoft_time_t soft_time_def = {    //默认2019/1/1 8:00:00
+    .sec   = 0x00,
+    .min   = 0x00,
+    .hour  = 0x08,
+    .day   = 0x01,
+    .month = 0x01,
+    .year  = 0x13,
+};
+
+
+
+
 
 /**********************************Function************************************/
 void hal_rtc_init()
@@ -58,6 +86,9 @@ void hal_rtc_init()
     RTC_WaitForLastTask();
 
     BKP_WriteBackupRegister(BKP_DR1, 0x32F2);    // 写入 backup register，以标记 RTC 配置完成
+
+    soft_time = soft_time_def;    //上电后初始化为默认值（后续eeprom驱动完善后，更新为上次保存在eeprom的值）
+    
 }
 
 void RTC_IRQHandler(void)
@@ -71,6 +102,45 @@ void RTC_IRQHandler(void)
 
 }
 
+
+void updata_time(void)
+{
+    soft_time.sec = RTC_GetCounter();
+    if(soft_time.sec > SOFT_TIME_SEC )
+    {
+        RTC_SetCounter(0);
+        soft_time.min++;
+
+        if(soft_time.min > SOFT_TIME_MIN )
+        {
+            soft_time.min = 0;
+            soft_time.hour++;
+            
+            if(soft_time.hour > SOFT_TIME_HOUR)
+            {
+                soft_time.hour = 0;
+                soft_time.day++;
+
+                if(soft_time.day > SOFT_TIME_DAY)
+                {
+                    soft_time.day = 1;
+                    soft_time.month++;
+
+                    if(soft_time.month > SOFT_TIME_MONTH)
+                    {
+                        soft_time.month = 1;
+                        soft_time.year++;
+
+                        if(soft_time.year > SOFT_TIME_YEAR)
+                        {
+                            soft_time.year = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 

@@ -13,6 +13,7 @@
 #include "typedef.h"
 #include "drv_led.h"
 #include "delay.h"
+#include "hal_rtc.h"
 /***********************************define*************************************/
 
 
@@ -23,7 +24,7 @@ volatile uint32_t temp = 0;
 /**********************************Function************************************/
 void task_sec()
 {
-
+    updata_time();
     if (GPIO_ReadOutputDataBit(LED_RED) == Bit_RESET)
     {
         LED_RED_ON;
