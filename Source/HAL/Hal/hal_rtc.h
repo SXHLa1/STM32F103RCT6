@@ -14,15 +14,28 @@
 #endif
  
 /***********************************include************************************/
- 
+#include "typedef.h"
 /***********************************define*************************************/
   
 /***********************************Struct*************************************/
-    
+     
+typedef struct{
+    uint16_t cs;
+    uint8_t sec;
+    uint8_t min;
+    uint8_t hour;
+    uint8_t day;
+    uint8_t month;
+    uint8_t year;
+}tsoft_time_t;
+     
 /**********************************Function************************************/
 void hal_rtc_init();        //RTC初始化
-void updata_time(void); //更新时间，万年历
-
+void soft_time_updata(void); //更新时间，万年历
+char* get_soft_time_string(void);
+tsoft_time_t get_soft_time();
+void save_soft_time(tsoft_time_t time);
+void soft_time_check();
 
  
 #ifdef __cplusplus

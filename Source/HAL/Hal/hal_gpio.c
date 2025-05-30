@@ -26,16 +26,33 @@ void hal_gpio_init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef mode
     
     GPIO_Init(GPIOx, &GPIO_InitStructure);
 
-    if( output == 0x01 )
+    if( output == 0x00 )
     {
-        GPIO_SetBits(GPIOx, GPIO_Pin);
+        GPIOx->BRR = GPIO_Pin;
     }
     else
     {
-        GPIO_ResetBits(GPIOx, GPIO_Pin);
+        GPIOx->BSRR = GPIO_Pin;
     }
 }
 
+
+void hal_gpio_set(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t output)
+{
+    if( output == 0x00 )
+    {
+        GPIOx->BRR = GPIO_Pin;
+    }
+    else
+    {
+        GPIOx->BSRR = GPIO_Pin;
+    }
+}
+
+uint8_t hal_gpio_get(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin)
+{
+    return ((GPIOx->IDR & GPIO_Pin) != 0x00) ? 0x01 : 0x00;
+}
 
 
 

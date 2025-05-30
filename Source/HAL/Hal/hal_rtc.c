@@ -14,6 +14,9 @@
 #include "typedef.h"
 #include "stm32f10x_rtc.h"
 #include "taskschedule.h"
+#include <stdio.h>
+#include "AT24C02.h"
+
 
 /***********************************define*************************************/
 
@@ -25,27 +28,15 @@
 #define SOFT_TIME_YEAR             99u
 
 
+static tsoft_time_t soft_time;
 
-
-typedef struct{
-    uint16_t cs;
-    uint8_t sec;
-    uint8_t min;
-    uint8_t hour;
-    uint8_t day;
-    uint8_t month;
-    uint8_t year;
-}tsoft_time_t;
-
-tsoft_time_t soft_time;
-
-tsoft_time_t soft_time_def = {    //默认2019/1/1 8:00:00
+static tsoft_time_t soft_time_def = {    //默认2019/1/1 8:00:00
     .sec   = 0x00,
-    .min   = 0x00,
-    .hour  = 0x08,
-    .day   = 0x01,
-    .month = 0x01,
-    .year  = 0x13,
+    .min   = 0x28,
+    .hour  = 0x15,
+    .day   = 0x1b,
+    .month = 0x05,
+    .year  = 0x19,
 };
 
 
@@ -53,6 +44,29 @@ tsoft_time_t soft_time_def = {    //默认2019/1/1 8:00:00
 
 
 /**********************************Function************************************/
+
+void RTC_IRQHandler(void)
+{
+    if(RTC_GetFlagStatus(RTC_FLAG_SEC))
+    {
+        RTC_ClearITPendingBit(RTC_IT_SEC);
+        task_flag_set(TASK_RTC_SECOND_FLAG);
+    }
+    
+
+}
+
+
+char* format_time_string(tsoft_time_t* time)
+{
+    static char buffer[20]; // 缓冲区用于存储格式化后的字符串
+    snprintf(buffer, sizeof(buffer), "%04d-%02d-%02d %02d:%02d:%02d",
+             time->year, time->month, time->day,
+             time->hour, time->min, time->sec);
+    return buffer;
+}
+
+
 void hal_rtc_init()
 {
     NVIC_InitTypeDef NVIC_InitStructure;
@@ -87,23 +101,12 @@ void hal_rtc_init()
 
     BKP_WriteBackupRegister(BKP_DR1, 0x32F2);    // 写入 backup register，以标记 RTC 配置完成
 
-    soft_time = soft_time_def;    //上电后初始化为默认值（后续eeprom驱动完善后，更新为上次保存在eeprom的值）
+    soft_time_check();    //上电后初始化为默认值（后续eeprom驱动完善后，更新为上次保存在eeprom的值）
     
 }
 
-void RTC_IRQHandler(void)
-{
-    if(RTC_GetFlagStatus(RTC_FLAG_SEC))
-    {
-        RTC_ClearITPendingBit(RTC_IT_SEC);
-        task_flag_set(TASK_RTC_SECOND_FLAG);
-    }
-    
 
-}
-
-
-void updata_time(void)
+void soft_time_updata(void)
 {
     soft_time.sec = RTC_GetCounter();
     if(soft_time.sec > SOFT_TIME_SEC )
@@ -143,6 +146,49 @@ void updata_time(void)
 }
 
 
+void soft_time_set(tsoft_time_t time)
+{
+    soft_time = time;
+}
+
+void soft_time_check()
+{
+    tsoft_time_t time;
+    
+    AT24C02_Read(EE_ADDR_SOFT_TIME, (uint8_t*)&time,EE_ADDR_SOFT_TIME_SIZE);
+    
+    if( time.cs != get_soft_time().cs )
+    {
+        soft_time_set(time);
+    }
+    else
+    {
+        // no action
+    }
+}
+
+
+char* get_soft_time_string(void)
+{
+    tsoft_time_t current_time = {0};
+    
+    current_time = get_soft_time();
+    
+    return format_time_string(&current_time);
+}
+
+
+tsoft_time_t get_soft_time()
+{
+    return soft_time;
+}
+
+
+
+void save_soft_time(tsoft_time_t time)
+{
+    AT24C02_Write(EE_ADDR_SOFT_TIME, (uint8_t*)&time, EE_ADDR_SOFT_TIME_SIZE);
+}
 
 
 

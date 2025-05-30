@@ -17,7 +17,7 @@
 
 void SystemClock_Config()
 {
-    /*RCC_APB1PeriphClockCmd( RCC_APB1Periph_PWR, ENABLE);
+    RCC_APB1PeriphClockCmd( RCC_APB1Periph_PWR, ENABLE);
 
     PWR_BackupAccessCmd(ENABLE);
 
@@ -32,7 +32,7 @@ void SystemClock_Config()
     
     RCC_HCLKConfig(RCC_SYSCLK_Div1);
     RCC_PCLK1Config(RCC_HCLK_Div2);
-    RCC_PCLK2Config(RCC_HCLK_Div1);*/
+    RCC_PCLK2Config(RCC_HCLK_Div1);
 
     
 }

@@ -17,26 +17,50 @@
 #include "hal_rcc.h"
 #include "hal_rtc.h"
 #include "hal_gpio.h"
+#include "lcd.h"
+#include "hal_i2c.h"
+#include "AT24C02.h"
 /***********************************define*************************************/
- 
+const uint8_t TEXT_Buffer[]={"V1"};
+#define SIZE sizeof(TEXT_Buffer)
+uint8_t datatemp[SIZE]; 
+
+
 /**********************************Function************************************/
+
 void app_init(void)
 {
     SystemClock_Config();
-    hal_rtc_init();
+    
+    AT24C02_Init();
+
     delay_init();
     LED_Init();
+    
+    LCD_Init();
+    hal_rtc_init();
     hal_iwdg_init();
     LED_Flashing(200,200);
-    hal_gpio_init(GPIOA, GPIO_Pin_15, GPIO_Mode_Out_PP, GPIO_Speed_50MHz,0x01);
+            
+    POINT_COLOR=RED;	
+    
+    
+    
+    LCD_ShowString(30,170,200,16,16,"Start Read 24C02.... ");
+    AT24C02_Read(0,datatemp,SIZE);
+    LCD_ShowString(30,170,200,16,16,"The Data Readed Is:  ");
+    LCD_ShowString(30,190,200,16,16,datatemp);
+    
 }
 
 void app_run(void)
 {
+
+
     while(1)
-    {
+    {   
         hal_iwadg_clr();
-        task_process();
+        task_process();  
     }
 
 }

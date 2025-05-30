@@ -22,8 +22,9 @@
 /***********************************Struct*************************************/
     
 /**********************************Function************************************/
-void hal_gpio_init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, uint8_t output);
-
+void hal_gpio_init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, GPIOMode_TypeDef mode, GPIOSpeed_TypeDef speed, uint8_t output); // gpio 初始化
+void hal_gpio_set(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t output);  // 设置gpio 输出电平
+uint8_t hal_gpio_get(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 
 

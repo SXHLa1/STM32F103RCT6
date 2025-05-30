@@ -57,13 +57,13 @@ void LED_Control(uint8_t mask)
         if ((mask >> i) & 1)
         {
             // 打开LED灯，需要注意打开电平
-            GPIO_ResetBits(LEDS[i].GPIOx, LEDS[i].pin);
+            hal_gpio_set(LEDS[i].GPIOx, LEDS[i].pin,0x01);
             LEDS[i].state = 0x01;
         }
         else
         {
             // 关闭LED灯，需要注意关闭电平
-            GPIO_SetBits(LEDS[i].GPIOx, LEDS[i].pin);
+            hal_gpio_set(LEDS[i].GPIOx, LEDS[i].pin,0x00);
             LEDS[i].state = 0x00;
         }
     }

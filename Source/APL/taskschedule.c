@@ -14,6 +14,9 @@
 #include "drv_led.h"
 #include "delay.h"
 #include "hal_rtc.h"
+#include "lcd.h"
+#include "app.h"
+#include "AT24C02.h"
 /***********************************define*************************************/
 
 
@@ -21,10 +24,20 @@ volatile uint32_t task_flag = 0;
 static uint32_t no_task_flag = 0;
 volatile uint32_t temp = 0;
 
+
 /**********************************Function************************************/
 void task_sec()
 {
-    updata_time();
+    temp++;
+    soft_time_updata();
+    LCD_ShowString(30,130,200,12,12,(uint8_t*)get_soft_time_string()); 
+
+
+    if((get_soft_time().min / 59) && (get_soft_time().sec / 58))
+    {
+        save_soft_time(get_soft_time());
+    }
+    
     if (GPIO_ReadOutputDataBit(LED_RED) == Bit_RESET)
     {
         LED_RED_ON;
@@ -33,6 +46,7 @@ void task_sec()
     {
         LED_RED_OFF;
     }
+
 }
 
 void task_min()

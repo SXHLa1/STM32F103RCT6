@@ -2501,6 +2501,9 @@
     <group>
         <name>HDL</name>
         <file>
+            <name>$PROJ_DIR$\..\..\Source\HDL\AT24C02.c</name>
+        </file>
+        <file>
             <name>$PROJ_DIR$\..\..\Source\HDL\delay.c</name>
         </file>
         <file>
@@ -2508,6 +2511,9 @@
         </file>
         <file>
             <name>$PROJ_DIR$\..\..\Source\HDL\drv_led.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\..\Source\HDL\lcd.c</name>
         </file>
     </group>
 </project>
