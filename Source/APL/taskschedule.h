@@ -20,7 +20,11 @@
 #define TASK_RTC_MINUTE_FLAG            0x00000002          //RTC 分中断任务
 #define TASK_RTC_HOUR_FLAG              0x00000004          //RTC 时中断任务
      
-#define TASK_LED_FLAG                   0x00000010          //RTC *中断任务
+#define TASK_UART_FLAG                  0x00000010          //串口数据处理任务
+
+
+
+
      
 /***********************************Struct*************************************/
     

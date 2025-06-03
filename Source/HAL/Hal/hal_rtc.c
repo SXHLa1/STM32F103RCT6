@@ -16,7 +16,7 @@
 #include "taskschedule.h"
 #include <stdio.h>
 #include "AT24C02.h"
-
+#include "hal_crc.h"
 
 /***********************************define*************************************/
 
@@ -148,16 +148,34 @@ void soft_time_updata(void)
 
 void soft_time_set(tsoft_time_t time)
 {
-    soft_time = time;
+    uint8_t sec = 0;
+
+    if(time.sec < 60 && time.min < 60 && time.hour < 24 && time.day < 31 && time.month < 13 && time.year < 100)
+    {
+        sec = time.sec;
+
+        RTC_SetCounter(sec);
+        time.sec = RTC_GetCounter();
+        
+        soft_time = time;
+        
+        save_soft_time(time);
+    }
+    else
+    {
+        soft_time = soft_time_def;
+    }
 }
 
 void soft_time_check()
 {
     tsoft_time_t time;
+
     
     AT24C02_Read(EE_ADDR_SOFT_TIME, (uint8_t*)&time,EE_ADDR_SOFT_TIME_SIZE);
-    
-    if( time.cs != get_soft_time().cs )
+
+    //如果eeprom保存的CS和实际CS不一致，并且eeprom 中读取的值是正确的，则恢复到eeprom保存的时间
+    if(time.cs != get_soft_time().cs)
     {
         soft_time_set(time);
     }
@@ -187,9 +205,11 @@ tsoft_time_t get_soft_time()
 
 void save_soft_time(tsoft_time_t time)
 {
+
+    time.cs = hal_crc16((uint8_t*)&time.min, 5);
+
     AT24C02_Write(EE_ADDR_SOFT_TIME, (uint8_t*)&time, EE_ADDR_SOFT_TIME_SIZE);
 }
-
 
 
 /******************* (C) COPYRIGHT 2034 dehongyi ******END OF FILE*************/

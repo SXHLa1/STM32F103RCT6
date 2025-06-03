@@ -17,6 +17,7 @@
 #include "lcd.h"
 #include "app.h"
 #include "AT24C02.h"
+#include "hal_crc.h"
 /***********************************define*************************************/
 
 
@@ -29,6 +30,7 @@ volatile uint32_t temp = 0;
 void task_sec()
 {
     temp++;
+    
     soft_time_updata();
     LCD_ShowString(30,130,200,12,12,(uint8_t*)get_soft_time_string()); 
 
@@ -114,9 +116,9 @@ void task_process()
         task_sec();
     }
     
-    if(task_flag_get(TASK_LED_FLAG))
+    if(task_flag_get(TASK_UART_FLAG))
     {
-        task_flag_clr(TASK_LED_FLAG);
+        task_flag_clr(TASK_UART_FLAG);      
     }
 }
 

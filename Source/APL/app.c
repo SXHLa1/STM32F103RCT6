@@ -20,6 +20,7 @@
 #include "lcd.h"
 #include "hal_i2c.h"
 #include "AT24C02.h"
+#include "hal_uart.h"
 /***********************************define*************************************/
 const uint8_t TEXT_Buffer[]={"V1"};
 #define SIZE sizeof(TEXT_Buffer)
@@ -36,7 +37,8 @@ void app_init(void)
 
     delay_init();
     LED_Init();
-    
+    hal_uart_init();
+
     LCD_Init();
     hal_rtc_init();
     hal_iwdg_init();

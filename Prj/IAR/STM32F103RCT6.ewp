@@ -2109,6 +2109,9 @@
                 <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_adc.c</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_crc.c</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\..\Source\HAL\Hal\hal_gpio.c</name>
             </file>
             <file>
